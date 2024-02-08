@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { cardMovie} from "../interface";
 
 interface IMoviesList {
-	data : cardMovie
+data : cardMovie[]
 }
 
 const MoviesList = ({data} : IMoviesList) => {

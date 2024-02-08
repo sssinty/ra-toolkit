@@ -5,19 +5,18 @@ import { useNavigate } from "react-router-dom";
 import { entitiesTypes } from "../interface";
 
 const FormSerch = () => {
-	const state = useSelector((state : {state : {entities : entitiesTypes}}) => state.state.entities)
+	const state = useSelector((state : {state }) => state.state)
   const [text, setText] = useState<string>('')
 	// const [send, setSend] = useState<boolean>(false)
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
   function handleSubmit (event: React.FormEvent) {
-		const target = event.target as HTMLFormElement
 		event.preventDefault();
-		dispatch(fetchMoviesByName((target.serch as HTMLFormElement[string]).value));
+		dispatch(fetchMoviesByName(text));
 		navigate('/movies');
   }
-
+	console.log(state)
   function handleChange(event: React.FormEvent) {
 		const target = event.target as HTMLInputElement;
 		setText(target.value);

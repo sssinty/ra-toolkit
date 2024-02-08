@@ -11,9 +11,7 @@ export interface favoritFilms {
 	ids: requestMovieID
 }
 export interface sercMovies {
-	Search: cardMovie[],
-	totalResults: number,
-	Response: boolean
+	ids: cardMovie[]
 }
 
 interface ratings {
@@ -55,7 +53,7 @@ export interface errorMassage {
 }
 
 export interface entitiesTypes {
-	entities: errorMassage | sercMovies
+	entities: errorMassage 
 }
 
 export interface IState {

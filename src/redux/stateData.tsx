@@ -43,7 +43,11 @@ const stateReducer = createSlice({
 
 			.addCase(fetchMoviesByName.fulfilled, (state, action) => {
 				console.log(action.payload)
-				state.entities = action.payload
+				if(action.payload.Response === 'False') {
+					state.entities = action.payload
+				} else {
+					state.ids = action.payload.Search
+				}
 				state.loadingStatus = 'idle',
 				state.error = null
 			})
