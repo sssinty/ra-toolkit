@@ -7,11 +7,9 @@ export interface cardMovie {
 	Type: string,
 	Poster: string,
 }
-export interface favoritFilms {
-	ids: requestMovieID
-}
+
 export interface sercMovies {
-	ids: cardMovie[]
+	ids: cardMovie
 }
 
 interface ratings {
@@ -47,9 +45,13 @@ export interface requestMovieID {
 	Response: string,
 }
 
+export interface favorit {
+	favoritFilms: requestMovieID
+}
+
 export interface errorMassage {
 	Response?: string,
-	Error: string
+	Error?: string
 }
 
 export interface entitiesTypes {
@@ -59,7 +61,8 @@ export interface entitiesTypes {
 export interface IState {
 	loadingStatus: 'idle' | 'failed' | 'loading',
 	error: null | errorMassage,
-	ids: EntityId[],
-	entities: object | sercMovies,
+	ids: EntityId[] | sercMovies,
+	entities: errorMassage,
+	favoritFilms: requestMovieID[],
 	film: object | requestMovieID
 }

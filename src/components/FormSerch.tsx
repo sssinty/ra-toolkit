@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector} from "react-redux";
+import {useState } from "react";
+import { useDispatch} from "react-redux";
 import { fetchMoviesByName } from "../redux/stateData";
 import { useNavigate } from "react-router-dom";
-import { entitiesTypes } from "../interface";
+import { AppDispatch } from "../store/store";
 
 const FormSerch = () => {
-	const state = useSelector((state : {state }) => state.state)
-  const [text, setText] = useState<string>('')
-	// const [send, setSend] = useState<boolean>(false)
-	const dispatch = useDispatch();
+  const [text, setText] = useState<string>('');
+	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
 
   function handleSubmit (event: React.FormEvent) {
@@ -16,20 +14,11 @@ const FormSerch = () => {
 		dispatch(fetchMoviesByName(text));
 		navigate('/movies');
   }
-	console.log(state)
+
   function handleChange(event: React.FormEvent) {
 		const target = event.target as HTMLInputElement;
 		setText(target.value);
-		console.log(target.value)
   }
-
-	// useEffect(() => {
-	// 	if(text != '') {
-			
-	// 	}
-	// }, [text])
-
-
 
 	return (
 		<form onSubmit={handleSubmit}>
@@ -37,7 +26,7 @@ const FormSerch = () => {
 			<button type="submit">Поиск</button>
 			<button type="button" onClick={() => navigate('/favorites')}>Избранное</button>
 		</form>
-	)
+	)A
 }
 
 export default FormSerch;

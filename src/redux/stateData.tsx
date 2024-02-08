@@ -3,7 +3,7 @@ import axios from "axios";
 import { IState } from "../interface";
 
 const dataAdapter = createEntityAdapter()
-const initialState : IState = dataAdapter.getInitialState({loadingStatus: 'idle', error: null, film: {}})
+const initialState : IState = dataAdapter.getInitialState({loadingStatus: 'idle', error: null, film: {}, favoritFilms: []})
 
 export const fetchMoviesByName = createAsyncThunk(
 	'fetch/moviesByName',
@@ -27,11 +27,11 @@ const stateReducer = createSlice({
 	initialState,
 	reducers: {
 		addСhosenFilm(state, action) {
-			state.ids.push(action.payload)
+			state.favoritFilms.push(action.payload)
 		},
 
-		removeСhosenFilm(state, action) {
-			state.ids = state.ids.filter((elem) => {elem.imdbID != action.payload.id, console.log(elem.imdbID != action.payload.id)})
+		removeСhosenFilm(state, {payload}){
+			state.favoritFilms = state.favoritFilms.filter((elem) => elem.imdbID !== payload.id)
 		}
 
 	}, extraReducers: (builder) => {
@@ -47,6 +47,7 @@ const stateReducer = createSlice({
 					state.entities = action.payload
 				} else {
 					state.ids = action.payload.Search
+					state.entities = {Response : action.payload.Response, Error: ''}
 				}
 				state.loadingStatus = 'idle',
 				state.error = null

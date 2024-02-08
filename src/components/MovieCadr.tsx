@@ -3,12 +3,13 @@ import {requestMovieID } from "../interface"
 import { useNavigate, useParams } from "react-router-dom";
 import { addСhosenFilm, fetchMoviesByID } from "../redux/stateData";
 import { useEffect} from "react";
+import { AppDispatch } from "../store/store";
 
 
 const MovieCard = () => {
 	const card = useSelector((state: {state: {film: requestMovieID}}) => state.state.film);
 	const params = useParams();
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
 
 	function hendlerClick() {
